@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calma — Apoyo Cotidiano TDAH y TEA</title>
+  <!-- Fuentes amigables y de fácil lectura -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Barra de Navegación Superior -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo" onclick="switchTab('mi-dia')">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">Calma</span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <button class="nav-btn active" data-tab="mi-dia">✨ Mi día</button>
+        <button class="nav-btn" data-tab="juegos-seguros">🎮 Juegos seguros</button>
+        <button class="nav-btn" data-tab="aprende">📖 Aprende</button>
+        <button class="nav-btn" data-tab="fuentes">📚 Fuentes</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- ==================== SECCIÓN 1: MI DÍA ==================== -->
+    <section id="mi-dia" class="tab-section active">
+      <div class="hero-header">
+        <h1>Hola 👋 Vamos paso a paso</h1>
+        <p class="subtitle">Marca cada tarea cuando la termines. Sin apuro y a tu propio ritmo.</p>
+      </div>
+
+      <!-- Panel de Gamificación (Recompensas visuales) -->
+      <div class="stats-card">
+        <div class="stat-box">
+          <span class="stat-label">Estrellas ganadas</span>
+          <div class="stat-value">
+            <span class="star-bounce">⭐</span>
+            <span id="star-count">0</span>
+          </div>
+        </div>
+
+        <div class="stat-box progress-box">
+          <div class="level-header">
+            <span class="stat-label">Nivel <strong id="level-count">1</strong></span>
+            <span class="next-badge-text" id="next-badge-text">5 estrellas para la próxima insignia</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="level-progress" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">Insignias</span>
+          <div class="badges-container" id="badges-container">
+            <span class="empty-badge">Aún sin insignias</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Herramienta de Apoyo: Temporizador Pomodoro Amigable -->
+      <div class="pomodoro-banner">
+        <div class="pomodoro-info">
+          <span class="pomodoro-icon">⏱️</span>
+          <div>
+            <h3>Temporizador de Enfoque Suave</h3>
+            <p>Trabaja 15 minutos sin distracciones y descansa 5 minutos.</p>
+          </div>
+        </div>
+        <div class="pomodoro-controls">
+          <span id="timer-display" class="timer-clock">15:00</span>
+          <button id="timer-start-btn" class="btn-secondary">Iniciar</button>
+          <button id="timer-reset-btn" class="btn-ghost" title="Reiniciar reloj">↻</button>
+        </div>
+      </div>
+
+      <!-- Lista de Tareas Cotidianas -->
+      <div class="tasks-section">
+        <div class="tasks-header">
+          <h2>Hoy (<span id="completed-count">0</span>/<span id="total-count">3</span>)</h2>
+          <button id="reset-day-btn" class="btn-ghost-small">Reiniciar marcas de hoy</button>
+        </div>
+
+        <ul id="task-list" class="task-list">
+          <!-- Las tareas se renderizan dinámicamente desde script.js -->
+        </ul>
+
+        <!-- Formulario para agregar nueva tarea -->
+        <div class="add-task-card">
+          <label class="add-label">Agregar nueva tarea a mi rutina:</label>
+          <div class="icon-selector" id="icon-selector">
+            <button type="button" class="icon-option selected" data-icon="🪥" title="Higiene">🪥</button>
+            <button type="button" class="icon-option" data-icon="🎒" title="Mochila / Escuela">🎒</button>
+            <button type="button" class="icon-option" data-icon="📚" title="Estudiar / Tarea">📚</button>
+            <button type="button" class="icon-option" data-icon="🍎" title="Alimentación">🍎</button>
+            <button type="button" class="icon-option" data-icon="🛏️" title="Ordenar / Dormir">🛏️</button>
+            <button type="button" class="icon-option" data-icon="🚿" title="Ducha">🚿</button>
+            <button type="button" class="icon-option" data-icon="🧹" title="Limpiar">🧹</button>
+            <button type="button" class="icon-option" data-icon="💊" title="Medicación / Salud">💊</button>
+            <button type="button" class="icon-option" data-icon="🎧" title="Pausa sensorial">🎧</button>
+          </div>
+          <form id="add-task-form" class="add-input-group">
+            <input type="text" id="new-task-input" placeholder="Ej: Ordenar mi pieza o preparar mi ropa..." maxlength="65" required />
+            <button type="submit" class="btn-primary">+ Agregar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN 2: JUEGOS SEGUROS ==================== -->
+    <section id="juegos-seguros" class="tab-section">
+      <div class="hero-header">
+        <h1>Juegos y Entornos Seguros 🎮</h1>
+        <p class="subtitle">Plataformas y videojuegos validados que apoyan la atención, la socialización sin acoso y la vida diaria.</p>
+      </div>
+
+      <!-- Filtros interactivos -->
+      <div class="filter-bar">
+        <button class="filter-chip active" data-filter="all">Todos los referentes</button>
+        <button class="filter-chip" data-filter="tdah">Enfoque TDAH</button>
+        <button class="filter-chip" data-filter="tea">Enfoque TEA</button>
+        <button class="filter-chip" data-filter="gratuito">Acceso Gratuito</button>
+      </div>
+
+      <!-- Tarjetas del Estado del Arte (Tesis) -->
+      <div class="games-grid">
+        <!-- Caso 1: EndeavorRx -->
+        <article class="game-card" data-category="tdah">
+          <div class="game-badge-row">
+            <span class="tag tag-tdah">TDAH • Atención</span>
+            <span class="tag tag-clinical">Aprobado por FDA</span>
+          </div>
+          <div class="game-header">
+            <span class="game-emoji">🚀</span>
+            <h3>EndeavorRx</h3>
+          </div>
+          <p class="game-desc">Videojuego desarrollado por Akili Interactive Labs diseñado como tratamiento digital. Utiliza mecánicas de doble tarea y dificultad adaptativa para entrenar la atención selectiva e inhibir distractores.</p>
+          <ul class="game-details">
+            <li><strong>Población:</strong> Niños y jóvenes de 8 a 12 años (tipo inatento o combinado).</li>
+            <li><strong>Beneficio:</strong> Entrenamiento cognitivo gamificado sin estigma.</li>
+            <li><strong>Consideración:</strong> Requiere prescripción médica en EE.UU. y app móvil.</li>
+          </ul>
+          <a href="https://www.endeavorrx.com/" target="_blank" rel="noopener noreferrer" class="btn-card">Visitar sitio oficial ↗</a>
+        </article>
+
+        <!-- Caso 2: Autcraft -->
+        <article class="game-card" data-category="tea gratuito">
+          <div class="game-badge-row">
+            <span class="tag tag-tea">TEA • Comunidad</span>
+            <span class="tag tag-free">Gratuito (con Minecraft)</span>
+          </div>
+          <div class="game-header">
+            <span class="game-emoji">🧱</span>
+            <h3>Autcraft</h3>
+          </div>
+          <p class="game-desc">Servidor dedicado de Minecraft creado por Stuart Duncan exclusivamente para personas autistas y sus familias. Funciona mediante lista blanca (whitelist) y moderación activa permanente.</p>
+          <ul class="game-details">
+            <li><strong>Población:</strong> Niños, jóvenes y adultos dentro del espectro autista.</li>
+            <li><strong>Beneficio:</strong> Socialización protegida, libre de bullying y sobrecarga sensorial.</li>
+            <li><strong>Consideración:</strong> Requiere poseer Minecraft Java Edition y solicitud de ingreso.</li>
+          </ul>
+          <a href="https://www.autcraft.com/" target="_blank" rel="noopener noreferrer" class="btn-card">Conocer comunidad ↗</a>
+        </article>
+
+        <!-- Caso 3: Floreo -->
+        <article class="game-card" data-category="tea tdah">
+          <div class="game-badge-row">
+            <span class="tag tag-tea">TEA y TDAH • Realidad Virtual</span>
+            <span class="tag tag-clinical">Respaldo NIH / FDA</span>
+          </div>
+          <div class="game-header">
+            <span class="game-emoji">🥽</span>
+            <h3>Floreo VR</h3>
+          </div>
+          <p class="game-desc">Plataforma de realidad virtual terapéutica que permite practicar habilidades sociales y de autonomía cotidiana (como cruzar la calle o conversar en clase) en escenarios seguros y repetibles.</p>
+          <ul class="game-details">
+            <li><strong>Población:</strong> Personas neurodivergentes con apoyo de un adulto guía.</li>
+            <li><strong>Beneficio:</strong> Aprendizaje inmersivo sin riesgos del entorno real.</li>
+            <li><strong>Consideración:</strong> Requiere visor de Realidad Virtual y suscripción.</li>
+          </ul>
+          <a href="https://floreovr.com/" target="_blank" rel="noopener noreferrer" class="btn-card">Explorar Floreo ↗</a>
+        </article>
+      </div>
+
+      <!-- Cuadro Comparativo Didáctico -->
+      <div class="comparison-card">
+        <h3>📊 ¿Por qué nace Calma frente a estas soluciones?</h3>
+        <p>Nuestra investigación bajo el enfoque <em>"La forma sigue a la función"</em> detectó que las herramientas actuales suelen ser costosas o enfocarse en una sola condición. <strong>Calma</strong> integra lo mejor de cada mundo de forma gratuita y accesible desde cualquier navegador:</p>
+        <div class="table-responsive">
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>Plataforma</th>
+                <th>Enfoque Principal</th>
+                <th>Barrera de Acceso</th>
+                <th>Aporte integrado en Calma</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>EndeavorRx</strong></td>
+                <td>Entrenamiento de atención (TDAH)</td>
+                <td>Requiere receta médica y rango de edad limitado</td>
+                <td>Recompensas visuales inmediatas y enfoque paso a paso</td>
+              </tr>
+              <tr>
+                <td><strong>Autcraft</strong></td>
+                <td>Espacio seguro sin acoso (TEA)</td>
+                <td>Limitado al entorno del juego Minecraft</td>
+                <td>Interfaz predecible, amigable y sin sobrecarga sensorial</td>
+              </tr>
+              <tr>
+                <td><strong>Floreo VR</strong></td>
+                <td>Habilidades de vida diaria (TEA/TDAH)</td>
+                <td>Alto costo de cascos de Realidad Virtual</td>
+                <td>Apoyo gratuito en rutinas reales desde celular o PC</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN 3: APRENDE ==================== -->
+    <section id="aprende" class="tab-section">
+      <div class="hero-header">
+        <h1>Aprende sobre Neurodivergencia 📖</h1>
+        <p class="subtitle">Información clara, basada en evidencia y pensada para personas neurodivergentes, familias y docentes.</p>
+      </div>
+
+      <!-- Sub-navegación de temas -->
+      <div class="subtabs-bar">
+        <button class="subtab-btn active" data-subtab="tema-tdah">⚡ ¿Qué es el TDAH?</button>
+        <button class="subtab-btn" data-subtab="tema-tea">🧩 ¿Qué es el TEA?</button>
+        <button class="subtab-btn" data-subtab="tema-convivencia">🌈 TDAH + TEA juntos</button>
+        <button class="subtab-btn" data-subtab="tema-guias">🏠 Guías prácticas</button>
+      </div>
+
+      <!-- Sub-contenido 1: TDAH -->
+      <div id="tema-tdah" class="subtab-content active">
+        <div class="info-hero-box accent-amber">
+          <h2>⚡ TDAH — Trastorno por Déficit de Atención e Hiperactividad</h2>
+          <p>Es una condición del neurodesarrollo en la que el cerebro regula de manera distinta la atención, los impulsos y el nivel de actividad. <strong>No es pereza ni falta de voluntad.</strong> Se manifiesta en tres presentaciones: predominantemente inatento, predominantemente hiperactivo-impulsivo o combinado.</p>
+        </div>
+
+        <div class="two-col-grid">
+          <div class="detail-box box-blue">
+            <h3>🔍 Manifestaciones de Inatención</h3>
+            <ul>
+              <li>Dificultad para mantener el foco en tareas largas o repetitivas.</li>
+              <li>Pérdida frecuente de objetos cotidianos (llaves, lápices, cuadernos).</li>
+              <li>Sensación de mente dispersa ante ruidos o pensamientos externos.</li>
+              <li>Postergación de tareas que exigen esfuerzo mental sostenido.</li>
+              <li>Desafíos para organizar horarios, materiales y prioridades.</li>
+            </ul>
+          </div>
+
+          <div class="detail-box box-mint">
+            <h3>🏃 Hiperactividad e Impulsividad</h3>
+            <ul>
+              <li>Inquietud motora constante (mover manos, pies o cambiar de postura).</li>
+              <li>Necesidad de movimiento en situaciones que exigen quietud prolongada.</li>
+              <li>Tendencia a hablar con rapidez o responder antes de terminar la pregunta.</li>
+              <li>Dificultad para esperar turnos en conversaciones o filas.</li>
+              <li>Toma de decisiones rápidas sin evaluar consecuencias inmediatas.</li>
+            </ul>
+          </div>
+
+          <div class="detail-box box-purple">
+            <h3>🧬 Origen y Acompañamiento</h3>
+            <ul>
+              <li>Posee un fuerte componente genético y neurobiológico (regulación de dopamina y noradrenalina).</li>
+              <li>No es causado por el consumo de azúcar, las pantallas ni el estilo de crianza.</li>
+              <li>El apoyo integral combina terapia cognitivo-conductual, adecuaciones escolares y, cuando un especialista lo indica, tratamiento farmacológico.</li>
+            </ul>
+          </div>
+
+          <div class="detail-box box-coral">
+            <h3>💡 Estrategias para el Día a Día</h3>
+            <ul>
+              <li><strong>Divide y vencerás:</strong> Fragmenta tareas grandes en pasos pequeños (como en <em>Mi día</em>).</li>
+              <li><strong>Temporizadores visuales:</strong> Usa bloques de 15 a 25 minutos con pausas activas.</li>
+              <li><strong>Anclajes espaciales:</strong> Asigna un lugar fijo y visible para objetos clave.</li>
+              <li><strong>Refuerzo inmediato:</strong> Celebra cada pequeño avance cumplido.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-contenido 2: TEA -->
+      <div id="tema-tea" class="subtab-content">
+        <div class="info-hero-box accent-teal">
+          <h2>🧩 TEA — Trastorno del Espectro Autista</h2>
+          <p>Es una condición del neurodesarrollo que influye en la comunicación, la interacción social y el procesamiento sensorial. Se denomina <strong>espectro</strong> porque cada persona es única: algunas hablan con fluidez y otras usan comunicación alternativa. En Chile, la <strong>Ley N° 21.545 (Ley TEA, 2023)</strong> garantiza sus derechos e inclusión en salud y educación.</p>
+        </div>
+
+        <div class="two-col-grid">
+          <div class="detail-box box-blue">
+            <h3>💬 Comunicación e Interacción Social</h3>
+            <ul>
+              <li>Interpretación literal del lenguaje (dificultad con sarcasmos, dobles sentidos o metáforas).</li>
+              <li>Diferencias en el contacto visual, gestos o tonos de voz.</li>
+              <li>Conversaciones profundas sobre temas de alto interés personal.</li>
+              <li>Mayor necesidad de tiempo para procesar preguntas sociales.</li>
+            </ul>
+          </div>
+
+          <div class="detail-box box-mint">
+            <h3>🎧 Procesamiento Sensorial</h3>
+            <ul>
+              <li><strong>Hipersensibilidad:</strong> Ruidos intensos, luces fluorescentes o etiquetas de ropa pueden causar dolor o sobrecarga.</li>
+              <li><strong>Hiposensibilidad:</strong> Búsqueda de estímulos como presión profunda, balanceo o movimiento.</li>
+              <li><strong>Crisis sensorial (Meltdown):</strong> No es una rabieta; es un colapso neurológico por exceso de estímulos.</li>
+            </ul>
+          </div>
+
+          <div class="detail-box box-purple">
+            <h3>🔄 Rutinas e Intereses Profundos</h3>
+            <ul>
+              <li>Las rutinas predecibles brindan seguridad y reducen la ansiedad ante la incertidumbre.</li>
+              <li>Movimientos repetitivos (<em>stimming</em> o estereotipias) ayudan a autorregular emociones.</li>
+              <li>Intereses intensos y especializados que son una gran fuente de motivación y talento.</li>
+            </ul>
+          </div>
+
+          <div class="detail-box box-coral">
+            <h3>🛡️ Estrategias de Apoyo Cotidiano</h3>
+            <ul>
+              <li><strong>Anticipación:</strong> Avisa con tiempo cualquier cambio de rutina usando apoyos visuales.</li>
+              <li><strong>Espacio de calma:</strong> Habilita un rincón tranquilo con baja estimulación sensorial.</li>
+              <li><strong>Claridad comunicativa:</strong> Usa frases directas, amables y concretas.</li>
+              <li><strong>Durante una crisis:</strong> Reduce ruidos y luces, mantén la calma y no exijas contacto visual.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-contenido 3: Convivencia TDAH + TEA -->
+      <div id="tema-convivencia" class="subtab-content">
+        <div class="info-hero-box accent-purple">
+          <h2>🌈 Cuando TDAH y TEA Conviven (AuDHD)</h2>
+          <p>La evidencia clínica indica que entre un <strong>30 % y un 60 %</strong> de las personas dentro del espectro autista también presentan características de TDAH. Esta co-ocurrencia genera necesidades particulares donde coexisten el deseo de rutina del TEA y la búsqueda de novedad del TDAH.</p>
+        </div>
+
+        <div class="two-col-grid">
+          <div class="detail-box box-blue">
+            <h3>⚖️ El Equilibrio Diario</h3>
+            <ul>
+              <li>El TDAH puede dificultar mantener las rutinas estructuradas que brindan calma al TEA.</li>
+              <li>Las listas visuales flexibles y gamificadas permiten estructurar el día sin rigidez excesiva.</li>
+              <li>Alternar actividades de concentración con pausas sensoriales previene el agotamiento mental.</li>
+            </ul>
+          </div>
+          <div class="detail-box box-mint">
+            <h3>🩺 Evaluación Profesional</h3>
+            <ul>
+              <li>El diagnóstico debe ser realizado por un equipo interdisciplinario (neurología, psiquiatría, psicología, terapia ocupacional y fonoaudiología).</li>
+              <li>Cada perfil neurodivergente es único: las estrategias deben adaptarse a la persona y no al revés.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-contenido 4: Guías para Familias y Docentes -->
+      <div id="tema-guias" class="subtab-content">
+        <div class="two-col-grid">
+          <div class="detail-box box-mint">
+            <h3>🏠 Guía Práctica para Familias</h3>
+            <ul>
+              <li><strong>Instrucciones breves:</strong> Entrega una indicación clara a la vez, con tono calmado.</li>
+              <li><strong>Anticipación visual:</strong> Usa calendarios o esta misma aplicación para mostrar qué viene después.</li>
+              <li><strong>Refuerzo del esfuerzo:</strong> Valora el proceso y la constancia ("vi cuánto te esforzaste"), no solo el resultado final.</li>
+              <li><strong>Comprensión sin castigo:</strong> No sancionar conductas propias de la autorregulación o sobrecarga sensorial; redirigir con empatía.</li>
+              <li><strong>Autocuidado del cuidador:</strong> Acompañar requiere energía; buscar redes de apoyo es fundamental.</li>
+            </ul>
+          </div>
+
+          <div class="detail-box box-blue">
+            <h3>🏫 Guía Práctica para Docentes (Aula Inclusiva)</h3>
+            <ul>
+              <li><strong>Ubicación estratégica:</strong> Situar al estudiante lejos de puertas o ventanas con alto tránsito visual o sonoro.</li>
+              <li><strong>Apoyo multimodal:</strong> Entregar las instrucciones tanto de forma oral como por escrito o en esquema.</li>
+              <li><strong>Flexibilidad sensorial:</strong> Permitir pausas activas breves, uso de audífonos canceladores de ruido o elementos sensoriales silenciosos (<em>fidgets</em>).</li>
+              <li><strong>Evaluación accesible:</strong> Otorgar tiempo adicional en pruebas y permitir entregas fraccionadas (en consonancia con programas PIE y Ley TEA).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer-box">
+        ℹ️ <strong>Nota importante:</strong> Esta plataforma tiene fines educativos y de apoyo organizativo cotidiano. No sustituye la evaluación, diagnóstico ni tratamiento de profesionales de la salud.
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN 4: FUENTES DE INFORMACIÓN ==================== -->
+    <section id="fuentes" class="tab-section">
+      <div class="hero-header">
+        <h1>Fuentes y Respaldo Bibliográfico 📚</h1>
+        <p class="subtitle">Documentos científicos, marcos legales en Chile y referentes tecnológicos que sustentan este Proyecto de Título.</p>
+      </div>
+
+      <div class="sources-container">
+        <div class="source-group">
+          <h3>🇨🇱 Marco Legal y Salud Pública en Chile</h3>
+          <ul class="source-list">
+            <li>
+              <strong>Ley N° 21.545 (Ley TEA, 2023):</strong> Establece la promoción de la inclusión, la atención integral y la protección de los derechos de las personas con trastorno del espectro autista en el ámbito social, de salud y educación. Biblioteca del Congreso Nacional de Chile (BCN).
+              <a href="https://www.bcn.cl/leychile/navegar?idNorma=1190123" target="_blank" rel="noopener noreferrer">Ver normativa en BCN ↗</a>
+            </li>
+            <li>
+              <strong>Ministerio de Salud de Chile (MINSAL):</strong> Guías de práctica clínica y orientaciones técnicas para la detección y apoyo integral de personas con TEA y TDAH en la red asistencial chilena.
+              <a href="https://www.minsal.cl/" target="_blank" rel="noopener noreferrer">Portal MINSAL ↗</a>
+            </li>
+            <li>
+              <strong>Organización Mundial de la Salud (OMS):</strong> Datos clave, caracterización clínica y enfoque de derechos sobre los Trastornos del Espectro Autista y el neurodesarrollo.
+              <a href="https://www.who.int/es/news-room/fact-sheets/detail/autism-spectrum-disorders" target="_blank" rel="noopener noreferrer">Consultar ficha OMS ↗</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>🎮 Investigación en Videojuegos, Realidad Virtual y Neurodivergencia</h3>
+          <ul class="source-list">
+            <li>
+              <strong>EndeavorRx / Akili Interactive Labs (2020):</strong> Autorización de la FDA como primer tratamiento digital basado en videojuegos para mejorar la función atencional en niños con TDAH.
+              <a href="https://www.endeavorrx.com/" target="_blank" rel="noopener noreferrer">Sitio clínico EndeavorRx ↗</a>
+            </li>
+            <li>
+              <strong>Ringland, K. E. (2019):</strong> <em>"Autsome": Fostering an autistic identity in an online Minecraft community for youth with autism</em>. En Information in Contemporary Society (pp. 132–143). Springer.
+              <a href="https://doi.org/10.1007/978-3-030-15742-5_12" target="_blank" rel="noopener noreferrer">DOI: 10.1007/978-3-030-15742-5_12 ↗</a>
+            </li>
+            <li>
+              <strong>Ringland, K. E., Wolf, C. T., Faucett, H., Dombrowski, L., & Hayes, G. R. (2016):</strong> <em>"Will I always be not social?": Re-conceptualizing sociality in the context of a Minecraft community for autism</em>. Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems (pp. 1256–1269). ACM.
+              <a href="https://doi.org/10.1145/2858036.2858038" target="_blank" rel="noopener noreferrer">DOI: 10.1145/2858036.2858038 ↗</a>
+            </li>
+            <li>
+              <strong>Duncan, S. (2013):</strong> <em>Autcraft — Comunidad virtual segura en Minecraft para personas autistas y sus familias</em>.
+              <a href="https://www.autcraft.com" target="_blank" rel="noopener noreferrer">autcraft.com ↗</a>
+            </li>
+            <li>
+              <strong>Floreo Inc. & National Institute of Mental Health (NIMH):</strong> <em>Floreo – Virtual reality learning tools to help individuals with autism</em>. Entrenamiento inmersivo de habilidades sociales y de vida diaria.
+              <a href="https://floreovr.com/" target="_blank" rel="noopener noreferrer">floreovr.com ↗</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de Página Académico -->
+  <footer class="footer">
+    <p><strong>Calma</strong> • Proyecto de Título: Apoyo Cotidiano para Personas con TDAH y TEA</p>
+    <p>Desarrollado por <strong>Matías Vallentino Morales Mutis</strong> • Universidad Bernardo O'Higgins (UBO) 2026</p>
+  </footer>
+
+  <!-- Notificación flotante de recompensa -->
+  <div id="toast-notification" class="toast" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
