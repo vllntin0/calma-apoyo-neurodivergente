@@ -15,19 +15,19 @@
   <!-- Barra de Navegación Superior -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="#" class="logo" onclick="switchTab('mi-dia')">
+      <a href="#" class="logo" onclick="switchTab('mi-dia'); return false;">
         <span class="logo-icon">🌿</span>
         <span class="logo-text">Calma</span>
       </a>
+
       <nav class="nav-links" aria-label="Navegación principal">
-        <button class="nav-btn active" data-tab="mi-dia">✨ Mi día</button>
-        <button class="nav-btn" data-tab="juegos-seguros">🎮 Juegos seguros</button>
-        <button class="nav-btn" data-tab="aprende">📖 Aprende</button>
-        <button class="nav-btn" data-tab="fuentes">📚 Fuentes</button>
+        <button type="button" class="nav-btn active" data-tab="mi-dia">✨ Mi día</button>
+        <button type="button" class="nav-btn" data-tab="juegos-seguros">🎮 Juegos seguros</button>
+        <button type="button" class="nav-btn" data-tab="aprende">📖 Aprende</button>
+        <button type="button" class="nav-btn" data-tab="fuentes">📚 Fuentes</button>
       </nav>
-    </div>
-  </header>
-<!-- Switch deslizante Modo Normal / Dark Mode -->
+
+      <!-- Switch deslizante Modo Normal / Dark Mode -->
       <div class="theme-switch-wrapper">
         <span class="switch-label" id="theme-label">Normal</span>
         <button
@@ -46,6 +46,8 @@
         </button>
       </div>
     </div>
+  </header>
+
   <main class="main-container">
 
     <!-- ==================== SECCIÓN 1: MI DÍA ==================== -->
@@ -68,7 +70,7 @@
         <div class="stat-box progress-box">
           <div class="level-header">
             <span class="stat-label">Nivel <strong id="level-count">1</strong></span>
-            <span class="next-badge-text" id="next-badge-text">5 estrellas para la próxima insignia</span>
+            <span class="next-badge-text" id="next-badge-text">5 estrellas para subir de nivel</span>
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="level-progress" style="width: 0%;"></div>
@@ -78,7 +80,7 @@
         <div class="stat-box">
           <span class="stat-label">Insignias</span>
           <div class="badges-container" id="badges-container">
-            <span class="empty-badge">Aún sin insignias</span>
+            <span class="empty-badge">5 ⭐ para tu primera insignia</span>
           </div>
         </div>
       </div>
@@ -94,8 +96,8 @@
         </div>
         <div class="pomodoro-controls">
           <span id="timer-display" class="timer-clock">15:00</span>
-          <button id="timer-start-btn" class="btn-secondary">Iniciar</button>
-          <button id="timer-reset-btn" class="btn-ghost" title="Reiniciar reloj">↻</button>
+          <button type="button" id="timer-start-btn" class="btn-secondary">Iniciar</button>
+          <button type="button" id="timer-reset-btn" class="btn-ghost" title="Reiniciar reloj">↻</button>
         </div>
       </div>
 
@@ -103,7 +105,7 @@
       <div class="tasks-section">
         <div class="tasks-header">
           <h2>Hoy (<span id="completed-count">0</span>/<span id="total-count">3</span>)</h2>
-          <button id="reset-day-btn" class="btn-ghost-small">Reiniciar marcas de hoy</button>
+          <button type="button" id="reset-day-btn" class="btn-ghost-small">Reiniciar marcas de hoy</button>
         </div>
 
         <ul id="task-list" class="task-list">
@@ -141,10 +143,10 @@
 
       <!-- Filtros interactivos -->
       <div class="filter-bar">
-        <button class="filter-chip active" data-filter="all">Todos los referentes</button>
-        <button class="filter-chip" data-filter="tdah">Enfoque TDAH</button>
-        <button class="filter-chip" data-filter="tea">Enfoque TEA</button>
-        <button class="filter-chip" data-filter="gratuito">Acceso Gratuito</button>
+        <button type="button" class="filter-chip active" data-filter="all">Todos los referentes</button>
+        <button type="button" class="filter-chip" data-filter="tdah">Enfoque TDAH</button>
+        <button type="button" class="filter-chip" data-filter="tea">Enfoque TEA</button>
+        <button type="button" class="filter-chip" data-filter="gratuito">Acceso Gratuito</button>
       </div>
 
       <!-- Tarjetas del Estado del Arte (Tesis) -->
@@ -255,10 +257,10 @@
 
       <!-- Sub-navegación de temas -->
       <div class="subtabs-bar">
-        <button class="subtab-btn active" data-subtab="tema-tdah">⚡ ¿Qué es el TDAH?</button>
-        <button class="subtab-btn" data-subtab="tema-tea">🧩 ¿Qué es el TEA?</button>
-        <button class="subtab-btn" data-subtab="tema-convivencia">🌈 TDAH + TEA juntos</button>
-        <button class="subtab-btn" data-subtab="tema-guias">🏠 Guías prácticas</button>
+        <button type="button" class="subtab-btn active" data-subtab="tema-tdah">⚡ ¿Qué es el TDAH?</button>
+        <button type="button" class="subtab-btn" data-subtab="tema-tea">🧩 ¿Qué es el TEA?</button>
+        <button type="button" class="subtab-btn" data-subtab="tema-convivencia">🌈 TDAH + TEA juntos</button>
+        <button type="button" class="subtab-btn" data-subtab="tema-guias">🏠 Guías prácticas</button>
       </div>
 
       <!-- Sub-contenido 1: TDAH -->
