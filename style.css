@@ -830,6 +830,181 @@ h1, h2, h3 {
   opacity: 1;
   transform: translateY(0);
 }
+[data-theme="dark"] {
+  --bg-page: #0f172a;
+  --bg-card: #1e293b;
+  --primary: #34d399;
+  --primary-hover: #10b981;
+  --primary-light: rgba(52, 211, 153, 0.14);
+  --secondary: #60a5fa;
+  --secondary-light: rgba(59, 130, 246, 0.14);
+  --accent-sun: #fbbf24;
+  --accent-sun-light: rgba(251, 191, 36, 0.16);
+  --accent-coral: #fb923c;
+  --accent-purple: #a78bfa;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-soft: #334155;
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .nav-btn.active {
+  color: #06281e;
+}
+
+[data-theme="dark"] .subtab-btn.active {
+  color: #06281e;
+}
+
+[data-theme="dark"] .progress-bar-bg {
+  background-color: #0f172a;
+}
+
+[data-theme="dark"] .badge-pill {
+  color: #fde68a;
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+[data-theme="dark"] .pomodoro-banner {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.14) 0%, rgba(217, 119, 6, 0.1) 100%);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+[data-theme="dark"] .pomodoro-info h3 {
+  color: #fcd34d;
+}
+
+[data-theme="dark"] .pomodoro-info p {
+  color: #fde68a;
+}
+
+[data-theme="dark"] .timer-clock {
+  background: #0f172a;
+  color: #fde68a;
+  border-color: rgba(251, 191, 36, 0.45);
+}
+
+[data-theme="dark"] .btn-ghost {
+  background: #1e293b;
+  color: #fcd34d;
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+[data-theme="dark"] .task-item.completed {
+  background-color: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+[data-theme="dark"] .delete-task-btn:hover {
+  background-color: rgba(239, 68, 68, 0.18);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .add-task-card {
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+[data-theme="dark"] .add-label {
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .icon-option {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .add-input-group input {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  border-color: #475569;
+}
+
+[data-theme="dark"] .btn-primary {
+  color: #06281e;
+}
+
+[data-theme="dark"] .btn-secondary {
+  color: #291802;
+}
+
+[data-theme="dark"] .filter-chip.active,
+[data-theme="dark"] .filter-chip:hover {
+  color: #081c36;
+}
+
+[data-theme="dark"] .tag-tdah {
+  background: rgba(251, 191, 36, 0.18);
+  color: #fde68a;
+}
+
+[data-theme="dark"] .tag-tea {
+  background: rgba(56, 189, 248, 0.18);
+  color: #7dd3fc;
+}
+
+[data-theme="dark"] .tag-clinical {
+  background: rgba(167, 139, 250, 0.2);
+  color: #ddd6fe;
+}
+
+[data-theme="dark"] .tag-free {
+  background: rgba(52, 211, 153, 0.18);
+  color: #6ee7b7;
+}
+
+[data-theme="dark"] .game-details {
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .accent-amber {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+[data-theme="dark"] .accent-teal {
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+[data-theme="dark"] .accent-purple {
+  background: rgba(167, 139, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.35);
+}
+
+[data-theme="dark"] .box-blue {
+  background-color: rgba(59, 130, 246, 0.14);
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+[data-theme="dark"] .box-mint {
+  background-color: rgba(52, 211, 153, 0.14);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+[data-theme="dark"] .box-purple {
+  background-color: rgba(167, 139, 250, 0.14);
+  border-color: rgba(196, 181, 253, 0.3);
+}
+
+[data-theme="dark"] .box-coral {
+  background-color: rgba(251, 146, 60, 0.14);
+  border-color: rgba(253, 186, 116, 0.3);
+}
+
+[data-theme="dark"] .disclaimer-box {
+  background: #1e293b;
+  border-color: #475569;
+}
+
+[data-theme="dark"] .source-list li {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .toast {
+  color: #06281e;
+}
 
 /* ==================== RESPONSIVO MÓVIL ==================== */
 @media (max-width: 768px) {
