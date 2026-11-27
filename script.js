@@ -1,4 +1,4 @@
-// ==================== ESTADO INICIAL Y PERSISTENCIA ====================
+
 const DEFAULT_TASKS = [
   { id: 1, text: "Lavarme los dientes", icon: "🪥", completed: false },
   { id: 2, text: "Preparar la mochila", icon: "🎒", completed: false },
@@ -23,7 +23,7 @@ function saveState() {
   localStorage.setItem("calmaAppState", JSON.stringify(appState));
 }
 
-// ==================== NOTIFICACIONES ====================
+
 function showToast(message) {
   const toast = document.getElementById("toast-notification");
   if (!toast) return;
@@ -34,7 +34,7 @@ function showToast(message) {
   }, 3000);
 }
 
-// ==================== NAVEGACIÓN PRINCIPAL ====================
+
 const navButtons = document.querySelectorAll(".nav-btn[data-tab]");
 const tabSections = document.querySelectorAll(".tab-section");
 
@@ -52,7 +52,7 @@ navButtons.forEach(btn => {
   btn.addEventListener("click", () => switchTab(btn.dataset.tab));
 });
 
-// ==================== GAMIFICACIÓN Y TAREAS ====================
+
 function updateStatsUI() {
   const starCountEl = document.getElementById("star-count");
   const levelCountEl = document.getElementById("level-count");
@@ -190,7 +190,7 @@ function escapeHTML(str) {
   return div.innerHTML;
 }
 
-// ==================== TEMPORIZADOR POMODORO ====================
+
 let timerSeconds = 15 * 60;
 let timerInterval = null;
 let isRunning = false;
@@ -240,7 +240,7 @@ timerResetBtn.addEventListener("click", () => {
   updateTimerText();
 });
 
-// ==================== FILTROS Y SUB-PESTAÑAS ====================
+
 document.querySelectorAll(".filter-chip").forEach(chip => {
   chip.addEventListener("click", () => {
     document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
@@ -268,5 +268,5 @@ document.querySelectorAll(".subtab-btn").forEach(btn => {
   });
 });
 
-// Inicializar aplicación
+
 renderTasks();
