@@ -34,7 +34,7 @@ function showToast(message) {
 }
 
 // ==================== NAVEGACIÓN PRINCIPAL (PESTAÑAS) ====================
-const navButtons = document.querySelectorAll(".nav-btn");
+const navButtons = document.querySelectorAll(".nav-btn[data-tab]");
 const tabSections = document.querySelectorAll(".tab-section");
 
 function switchTab(tabId) {
@@ -61,7 +61,6 @@ function updateStatsUI() {
 
   starCountEl.textContent = appState.stars;
 
-  // Cada 5 estrellas sube 1 nivel
   const currentLevel = Math.floor(appState.stars / 5) + 1;
   const starsInCurrentLevel = appState.stars % 5;
   const starsNeeded = 5 - starsInCurrentLevel;
@@ -71,7 +70,6 @@ function updateStatsUI() {
   nextBadgeEl.textContent = `${starsNeeded} estrella${starsNeeded === 1 ? "" : "s"} para subir de nivel`;
   progressFillEl.style.width = `${progressPercent}%`;
 
-  // Renderizar insignias desbloqueadas
   const unlockedBadges = BADGES_CATALOG.filter(b => appState.stars >= b.stars);
   if (unlockedBadges.length === 0) {
     badgesContainer.innerHTML = `<span class="empty-badge">5 ⭐ para tu primera insignia</span>`;
@@ -99,13 +97,11 @@ function renderTasks() {
         <span class="task-icon">${task.icon}</span>
         <span class="task-text">${escapeHTML(task.text)}</span>
       </div>
-      <button class="delete-task-btn" title="Eliminar tarea" aria-label="Eliminar tarea">✕</button>
+      <button type="button" class="delete-task-btn" title="Eliminar tarea" aria-label="Eliminar tarea">✕</button>
     `;
 
-    // Marcar o desmarcar tarea
     li.querySelector(".task-left").addEventListener("click", () => toggleTask(task.id));
 
-    // Eliminar tarea
     li.querySelector(".delete-task-btn").addEventListener("click", (e) => {
       e.stopPropagation();
       deleteTask(task.id);
@@ -147,6 +143,7 @@ function deleteTask(id) {
 
 function animateStar() {
   const star = document.querySelector(".star-bounce");
+  if (!star) return;
   star.style.transform = "scale(1.45) rotate(15deg)";
   setTimeout(() => {
     star.style.transform = "scale(1) rotate(0deg)";
@@ -263,43 +260,7 @@ document.querySelectorAll(".filter-chip").forEach(chip => {
     });
   });
 });
-const themeToggleBtn = document.getElementById("theme-toggle-btn");
-const THEME_STORAGE_KEY = "calmaThemePreference";
 
-function applyTheme(theme) {
-  const isDark = theme === "dark";
-  if (isDark) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.removeAttribute("data-theme");
-  }
-
-  if (themeToggleBtn) {
-    themeToggleBtn.textContent = isDark ? "☀️ Modo claro" : "🌙 Modo oscuro";
-    themeToggleBtn.setAttribute("aria-pressed", String(isDark));
-  }
-}
-
-const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-const systemPrefersDark =
-  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
-
-if (themeToggleBtn) {
-  themeToggleBtn.addEventListener("click", () => {
-    const nextTheme =
-      document.documentElement.getAttribute("data-theme") === "dark"
-        ? "light"
-        : "dark";
-    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    applyTheme(nextTheme);
-    showToast(
-      nextTheme === "dark"
-        ? "🌙 Modo oscuro activado"
-        : "☀️ Modo claro activado"
-    );
-  });
-}
 // ==================== SUB-PESTAÑAS DE SECCIÓN APRENDE ====================
 document.querySelectorAll(".subtab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -310,6 +271,47 @@ document.querySelectorAll(".subtab-btn").forEach(btn => {
     document.getElementById(btn.dataset.subtab).classList.add("active");
   });
 });
+
+// ==================== SWITCH MODO NORMAL / DARK MODE ====================
+const themeSwitch = document.getElementById("theme-switch");
+const themeLabel = document.getElementById("theme-label");
+const THEME_STORAGE_KEY = "calmaThemePreference";
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  if (isDark) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+
+  if (themeSwitch) {
+    themeSwitch.setAttribute("aria-checked", String(isDark));
+  }
+  if (themeLabel) {
+    themeLabel.textContent = isDark ? "Dark" : "Normal";
+  }
+}
+
+const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+const systemPrefersDark =
+  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
+
+if (themeSwitch) {
+  themeSwitch.addEventListener("click", () => {
+    const isCurrentlyDark =
+      document.documentElement.getAttribute("data-theme") === "dark";
+    const nextTheme = isCurrentlyDark ? "light" : "dark";
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    applyTheme(nextTheme);
+    showToast(
+      nextTheme === "dark"
+        ? "🌙 Modo oscuro activado"
+        : "☀️ Modo normal activado"
+    );
+  });
+}
 
 // Inicializar aplicación
 renderTasks();
