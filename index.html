@@ -24,11 +24,28 @@
         <button class="nav-btn" data-tab="juegos-seguros">🎮 Juegos seguros</button>
         <button class="nav-btn" data-tab="aprende">📖 Aprende</button>
         <button class="nav-btn" data-tab="fuentes">📚 Fuentes</button>
-        <button type="button" id="theme-toggle-btn" class="nav-btn theme-btn" aria-pressed="false" title="Cambiar entre modo claro y modo oscuro">🌙 Modo oscuro</button>
       </nav>
     </div>
   </header>
-
+<!-- Switch deslizante Modo Normal / Dark Mode -->
+      <div class="theme-switch-wrapper">
+        <span class="switch-label" id="theme-label">Normal</span>
+        <button
+          type="button"
+          id="theme-switch"
+          class="theme-switch"
+          role="switch"
+          aria-checked="false"
+          aria-label="Cambiar entre modo normal y modo oscuro"
+        >
+          <span class="switch-icons" aria-hidden="true">
+            <span>☀️</span>
+            <span>🌙</span>
+          </span>
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
   <main class="main-container">
 
     <!-- ==================== SECCIÓN 1: MI DÍA ==================== -->
