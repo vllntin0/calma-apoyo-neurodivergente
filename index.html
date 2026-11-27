@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calma — Apoyo Cotidiano TDAH y TEA</title>
-  <!-- Fuentes amigables y de fácil lectura -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
@@ -27,23 +26,16 @@
         <button type="button" class="nav-btn" data-tab="fuentes">📚 Fuentes</button>
       </nav>
 
-      <!-- Switch deslizante Modo Normal / Dark Mode -->
-      <div class="theme-switch-wrapper">
-        <span class="switch-label" id="theme-label">Normal</span>
-        <button
-          type="button"
-          id="theme-switch"
-          class="theme-switch"
-          role="switch"
-          aria-checked="false"
-          aria-label="Cambiar entre modo normal y modo oscuro"
-        >
-          <span class="switch-icons" aria-hidden="true">
-            <span>☀️</span>
-            <span>🌙</span>
+      <!-- Switch Estilo iPhone (Modo Normal / Dark Mode) -->
+      <div class="ios-switch-group">
+        <span class="ios-switch-text" id="theme-status-text">Modo Normal</span>
+        <label class="ios-switch" for="theme-checkbox" title="Cambiar entre Modo Normal y Modo Oscuro">
+          <input type="checkbox" id="theme-checkbox" role="switch" aria-checked="false" />
+          <span class="ios-slider">
+            <span class="ios-icon-sun">☀️</span>
+            <span class="ios-icon-moon">🌙</span>
           </span>
-          <span class="switch-thumb"></span>
-        </button>
+        </label>
       </div>
     </div>
   </header>
@@ -52,12 +44,40 @@
 
     <!-- ==================== SECCIÓN 1: MI DÍA ==================== -->
     <section id="mi-dia" class="tab-section active">
-      <div class="hero-header">
-        <h1>Hola 👋 Vamos paso a paso</h1>
-        <p class="subtitle">Marca cada tarea cuando la termines. Sin apuro y a tu propio ritmo.</p>
+      <!-- Banner Didáctico con Mascota Ilustrada (Zorrito Amigable) -->
+      <div class="mascot-hero">
+        <div class="mascot-svg-box" aria-hidden="true">
+          <svg viewBox="0 0 140 140" class="mascot-svg">
+            <!-- Orejas -->
+            <polygon points="28,58 20,16 58,38" fill="#fb923c" />
+            <polygon points="32,52 27,25 50,39" fill="#fed7aa" />
+            <polygon points="112,58 120,16 82,38" fill="#fb923c" />
+            <polygon points="108,52 113,25 90,39" fill="#fed7aa" />
+            <!-- Cabeza -->
+            <ellipse cx="70" cy="76" rx="46" ry="40" fill="#f97316" />
+            <!-- Mejillas blancas -->
+            <path d="M26,82 Q45,74 70,96 Q95,74 114,82 Q108,112 70,114 Q32,112 26,82 Z" fill="#fff7ed" />
+            <!-- Ojos -->
+            <circle cx="52" cy="68" r="7" fill="#1e293b" />
+            <circle cx="54" cy="66" r="2.5" fill="#ffffff" />
+            <circle cx="88" cy="68" r="7" fill="#1e293b" />
+            <circle cx="90" cy="66" r="2.5" fill="#ffffff" />
+            <!-- Nariz y sonrisa -->
+            <ellipse cx="70" cy="82" rx="6" ry="4.5" fill="#1e293b" />
+            <path d="M62,90 Q70,97 78,90" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
+            <!-- Rubor -->
+            <ellipse cx="42" cy="80" rx="6" ry="3.5" fill="#fda4af" opacity="0.7" />
+            <ellipse cx="98" cy="80" rx="6" ry="3.5" fill="#fda4af" opacity="0.7" />
+          </svg>
+        </div>
+        <div class="mascot-text">
+          <span class="pill-badge">🦊 ¡Hola! Soy Pip, tu compañero de ruta</span>
+          <h1>Vamos paso a paso, sin apuro</h1>
+          <p class="subtitle">Marca cada tarea cuando la termines. Cada pequeño avance suma estrellas y te ayuda a organizar tu día con calma.</p>
+        </div>
       </div>
 
-      <!-- Panel de Gamificación (Recompensas visuales) -->
+      <!-- Panel de Gamificación -->
       <div class="stats-card">
         <div class="stat-box">
           <span class="stat-label">Estrellas ganadas</span>
@@ -85,13 +105,13 @@
         </div>
       </div>
 
-      <!-- Herramienta de Apoyo: Temporizador Pomodoro Amigable -->
+      <!-- Temporizador Pomodoro Amigable -->
       <div class="pomodoro-banner">
         <div class="pomodoro-info">
-          <span class="pomodoro-icon">⏱️</span>
+          <span class="pomodoro-icon">🐶</span>
           <div>
             <h3>Temporizador de Enfoque Suave</h3>
-            <p>Trabaja 15 minutos sin distracciones y descansa 5 minutos.</p>
+            <p>Trabaja 15 minutos sin distracciones y luego toma un respiro.</p>
           </div>
         </div>
         <div class="pomodoro-controls">
@@ -101,18 +121,16 @@
         </div>
       </div>
 
-      <!-- Lista de Tareas Cotidianas -->
+      <!-- Lista de Tareas -->
       <div class="tasks-section">
         <div class="tasks-header">
           <h2>Hoy (<span id="completed-count">0</span>/<span id="total-count">3</span>)</h2>
           <button type="button" id="reset-day-btn" class="btn-ghost-small">Reiniciar marcas de hoy</button>
         </div>
 
-        <ul id="task-list" class="task-list">
-          <!-- Las tareas se renderizan dinámicamente desde script.js -->
-        </ul>
+        <ul id="task-list" class="task-list"></ul>
 
-        <!-- Formulario para agregar nueva tarea -->
+        <!-- Agregar nueva tarea -->
         <div class="add-task-card">
           <label class="add-label">Agregar nueva tarea a mi rutina:</label>
           <div class="icon-selector" id="icon-selector">
@@ -132,13 +150,98 @@
           </form>
         </div>
       </div>
+
+      <!-- Rincón Visual de Animales para Pausa y Calma -->
+      <div class="animals-corner">
+        <div class="section-intro-row">
+          <div>
+            <h2>🐾 Rincón de Calma con Animales</h2>
+            <p class="subtitle">Observa estos animales y haz una pausa breve para regular tu respiración o cambiar el foco.</p>
+          </div>
+          <button type="button" id="shuffle-breath-btn" class="btn-ghost-small">🌬️ Tip de respiración</button>
+        </div>
+
+        <div class="animals-grid">
+          <article class="animal-card">
+            <div class="animal-photo-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80"
+                alt="Gatito tranquilo descansando"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="animal-fallback" style="display:none;">🐱</div>
+            </div>
+            <div class="animal-body">
+              <span class="animal-badge">Calma y descanso</span>
+              <h3>Gatito en pausa</h3>
+              <p>Inhala suave en 4 segundos y suelta el aire en 4 segundos, como un gato estirándose al sol.</p>
+            </div>
+          </article>
+
+          <article class="animal-card">
+            <div class="animal-photo-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80"
+                alt="Perrito alegre mirando de frente"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="animal-fallback" style="display:none;">🐶</div>
+            </div>
+            <div class="animal-body">
+              <span class="animal-badge">Ánimo y compañía</span>
+              <h3>Perrito fiel</h3>
+              <p>Celebra terminar un paso aunque sea pequeño: la constancia vale mucho más que la perfección.</p>
+            </div>
+          </article>
+
+          <article class="animal-card">
+            <div class="animal-photo-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=600&q=80"
+                alt="Pequeño hámster tierno"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="animal-fallback" style="display:none;">🐹</div>
+            </div>
+            <div class="animal-body">
+              <span class="animal-badge">Paso a paso</span>
+              <h3>Pequeño explorador</h3>
+              <p>Si una tarea parece grande, divídela en trozos chiquitos. Solo importa el siguiente paso.</p>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
     <!-- ==================== SECCIÓN 2: JUEGOS SEGUROS ==================== -->
     <section id="juegos-seguros" class="tab-section">
-      <div class="hero-header">
-        <h1>Juegos y Entornos Seguros 🎮</h1>
-        <p class="subtitle">Plataformas y videojuegos validados que apoyan la atención, la socialización sin acoso y la vida diaria.</p>
+      <div class="mascot-hero mascot-hero-blue">
+        <div class="mascot-svg-box" aria-hidden="true">
+          <svg viewBox="0 0 140 140" class="mascot-svg">
+            <!-- Orejas de panda -->
+            <circle cx="36" cy="36" r="18" fill="#1e293b" />
+            <circle cx="104" cy="36" r="18" fill="#1e293b" />
+            <!-- Cabeza -->
+            <ellipse cx="70" cy="76" rx="46" ry="38" fill="#ffffff" stroke="#cbd5e1" stroke-width="3" />
+            <!-- Manchas de ojos -->
+            <ellipse cx="50" cy="70" rx="13" ry="16" transform="rotate(-12 50 70)" fill="#1e293b" />
+            <ellipse cx="90" cy="70" rx="13" ry="16" transform="rotate(12 90 70)" fill="#1e293b" />
+            <!-- Ojos -->
+            <circle cx="52" cy="68" r="4.5" fill="#ffffff" />
+            <circle cx="88" cy="68" r="4.5" fill="#ffffff" />
+            <!-- Nariz y boca -->
+            <ellipse cx="70" cy="84" rx="5.5" ry="3.8" fill="#1e293b" />
+            <path d="M63,91 Q70,97 77,91" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="mascot-text">
+          <span class="pill-badge pill-blue">🐼 Entornos lúdicos protegidos</span>
+          <h1>Juegos y Entornos Seguros 🎮</h1>
+          <p class="subtitle">Plataformas y videojuegos validados que apoyan la atención, la socialización sin acoso y la vida diaria.</p>
+        </div>
       </div>
 
       <!-- Filtros interactivos -->
@@ -149,9 +252,8 @@
         <button type="button" class="filter-chip" data-filter="gratuito">Acceso Gratuito</button>
       </div>
 
-      <!-- Tarjetas del Estado del Arte (Tesis) -->
+      <!-- Tarjetas del Estado del Arte -->
       <div class="games-grid">
-        <!-- Caso 1: EndeavorRx -->
         <article class="game-card" data-category="tdah">
           <div class="game-badge-row">
             <span class="tag tag-tdah">TDAH • Atención</span>
@@ -170,7 +272,6 @@
           <a href="https://www.endeavorrx.com/" target="_blank" rel="noopener noreferrer" class="btn-card">Visitar sitio oficial ↗</a>
         </article>
 
-        <!-- Caso 2: Autcraft -->
         <article class="game-card" data-category="tea gratuito">
           <div class="game-badge-row">
             <span class="tag tag-tea">TEA • Comunidad</span>
@@ -189,7 +290,6 @@
           <a href="https://www.autcraft.com/" target="_blank" rel="noopener noreferrer" class="btn-card">Conocer comunidad ↗</a>
         </article>
 
-        <!-- Caso 3: Floreo -->
         <article class="game-card" data-category="tea tdah">
           <div class="game-badge-row">
             <span class="tag tag-tea">TEA y TDAH • Realidad Virtual</span>
@@ -250,9 +350,29 @@
 
     <!-- ==================== SECCIÓN 3: APRENDE ==================== -->
     <section id="aprende" class="tab-section">
-      <div class="hero-header">
-        <h1>Aprende sobre Neurodivergencia 📖</h1>
-        <p class="subtitle">Información clara, basada en evidencia y pensada para personas neurodivergentes, familias y docentes.</p>
+      <div class="mascot-hero mascot-hero-purple">
+        <div class="mascot-svg-box" aria-hidden="true">
+          <svg viewBox="0 0 140 140" class="mascot-svg">
+            <!-- Cuerpo de búho -->
+            <ellipse cx="70" cy="76" rx="42" ry="44" fill="#8b5cf6" />
+            <!-- Vientre claro -->
+            <ellipse cx="70" cy="90" rx="26" ry="25" fill="#ede9fe" />
+            <!-- Ojos grandes -->
+            <circle cx="52" cy="62" r="15" fill="#ffffff" />
+            <circle cx="88" cy="62" r="15" fill="#ffffff" />
+            <circle cx="52" cy="62" r="7" fill="#1e293b" />
+            <circle cx="88" cy="62" r="7" fill="#1e293b" />
+            <circle cx="54" cy="60" r="2.5" fill="#ffffff" />
+            <circle cx="90" cy="60" r="2.5" fill="#ffffff" />
+            <!-- Pico -->
+            <polygon points="64,74 76,74 70,85" fill="#fbbf24" />
+          </svg>
+        </div>
+        <div class="mascot-text">
+          <span class="pill-badge pill-purple">🦉 Búho Sabio — Información clara y accesible</span>
+          <h1>Aprende sobre Neurodivergencia 📖</h1>
+          <p class="subtitle">Información clara, basada en evidencia y pensada para personas neurodivergentes, familias y docentes.</p>
+        </div>
       </div>
 
       <!-- Sub-navegación de temas -->
@@ -481,7 +601,7 @@
     <p>Desarrollado por <strong>Matías Vallentino Morales Mutis</strong> • Universidad Bernardo O'Higgins (UBO) 2026</p>
   </footer>
 
-  <!-- Notificación flotante de recompensa -->
+  <!-- Notificación flotante -->
   <div id="toast-notification" class="toast" aria-live="polite"></div>
 
   <script src="script.js"></script>
