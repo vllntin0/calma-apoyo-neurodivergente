@@ -6,16 +6,15 @@
   <title>Calma — Apoyo Cotidiano TDAH y TEA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Barra de Navegación Superior -->
   <header class="navbar">
     <div class="nav-container">
       <a href="#" class="logo" onclick="switchTab('mi-dia'); return false;">
-        <span class="logo-icon">🌿</span>
+        <span class="logo-mark" aria-hidden="true">🌿</span>
         <span class="logo-text">Calma</span>
       </a>
 
@@ -25,18 +24,6 @@
         <button type="button" class="nav-btn" data-tab="aprende">📖 Aprende</button>
         <button type="button" class="nav-btn" data-tab="fuentes">📚 Fuentes</button>
       </nav>
-
-      <!-- Switch Estilo iPhone (Modo Normal / Dark Mode) -->
-      <div class="ios-switch-group">
-        <span class="ios-switch-text" id="theme-status-text">Modo Normal</span>
-        <label class="ios-switch" for="theme-checkbox" title="Cambiar entre Modo Normal y Modo Oscuro">
-          <input type="checkbox" id="theme-checkbox" role="switch" aria-checked="false" />
-          <span class="ios-slider">
-            <span class="ios-icon-sun">☀️</span>
-            <span class="ios-icon-moon">🌙</span>
-          </span>
-        </label>
-      </div>
     </div>
   </header>
 
@@ -44,45 +31,17 @@
 
     <!-- ==================== SECCIÓN 1: MI DÍA ==================== -->
     <section id="mi-dia" class="tab-section active">
-      <!-- Banner Didáctico con Mascota Ilustrada (Zorrito Amigable) -->
-      <div class="mascot-hero">
-        <div class="mascot-svg-box" aria-hidden="true">
-          <svg viewBox="0 0 140 140" class="mascot-svg">
-            <!-- Orejas -->
-            <polygon points="28,58 20,16 58,38" fill="#fb923c" />
-            <polygon points="32,52 27,25 50,39" fill="#fed7aa" />
-            <polygon points="112,58 120,16 82,38" fill="#fb923c" />
-            <polygon points="108,52 113,25 90,39" fill="#fed7aa" />
-            <!-- Cabeza -->
-            <ellipse cx="70" cy="76" rx="46" ry="40" fill="#f97316" />
-            <!-- Mejillas blancas -->
-            <path d="M26,82 Q45,74 70,96 Q95,74 114,82 Q108,112 70,114 Q32,112 26,82 Z" fill="#fff7ed" />
-            <!-- Ojos -->
-            <circle cx="52" cy="68" r="7" fill="#1e293b" />
-            <circle cx="54" cy="66" r="2.5" fill="#ffffff" />
-            <circle cx="88" cy="68" r="7" fill="#1e293b" />
-            <circle cx="90" cy="66" r="2.5" fill="#ffffff" />
-            <!-- Nariz y sonrisa -->
-            <ellipse cx="70" cy="82" rx="6" ry="4.5" fill="#1e293b" />
-            <path d="M62,90 Q70,97 78,90" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
-            <!-- Rubor -->
-            <ellipse cx="42" cy="80" rx="6" ry="3.5" fill="#fda4af" opacity="0.7" />
-            <ellipse cx="98" cy="80" rx="6" ry="3.5" fill="#fda4af" opacity="0.7" />
-          </svg>
-        </div>
-        <div class="mascot-text">
-          <span class="pill-badge">🦊 ¡Hola! Soy Pip, tu compañero de ruta</span>
-          <h1>Vamos paso a paso, sin apuro</h1>
-          <p class="subtitle">Marca cada tarea cuando la termines. Cada pequeño avance suma estrellas y te ayuda a organizar tu día con calma.</p>
-        </div>
+      <div class="hero-card">
+        <span class="eyebrow">Acompañamiento diario sin apuro</span>
+        <h1>Hola 👋 Vamos paso a paso</h1>
+        <p class="subtitle">Marca cada tarea cuando la termines. Cada avance suma estrellas y te ayuda a organizar tu rutina de forma clara y amigable.</p>
       </div>
 
-      <!-- Panel de Gamificación -->
       <div class="stats-card">
         <div class="stat-box">
           <span class="stat-label">Estrellas ganadas</span>
           <div class="stat-value">
-            <span class="star-bounce">⭐</span>
+            <span class="star-bounce" aria-hidden="true">⭐</span>
             <span id="star-count">0</span>
           </div>
         </div>
@@ -105,10 +64,9 @@
         </div>
       </div>
 
-      <!-- Temporizador Pomodoro Amigable -->
       <div class="pomodoro-banner">
         <div class="pomodoro-info">
-          <span class="pomodoro-icon">🐶</span>
+          <span class="pomodoro-icon" aria-hidden="true">⏱️</span>
           <div>
             <h3>Temporizador de Enfoque Suave</h3>
             <p>Trabaja 15 minutos sin distracciones y luego toma un respiro.</p>
@@ -121,7 +79,6 @@
         </div>
       </div>
 
-      <!-- Lista de Tareas -->
       <div class="tasks-section">
         <div class="tasks-header">
           <h2>Hoy (<span id="completed-count">0</span>/<span id="total-count">3</span>)</h2>
@@ -130,9 +87,8 @@
 
         <ul id="task-list" class="task-list"></ul>
 
-        <!-- Agregar nueva tarea -->
         <div class="add-task-card">
-          <label class="add-label">Agregar nueva tarea a mi rutina:</label>
+          <label class="add-label" for="new-task-input">Agregar nueva tarea a mi rutina:</label>
           <div class="icon-selector" id="icon-selector">
             <button type="button" class="icon-option selected" data-icon="🪥" title="Higiene">🪥</button>
             <button type="button" class="icon-option" data-icon="🎒" title="Mochila / Escuela">🎒</button>
@@ -150,101 +106,16 @@
           </form>
         </div>
       </div>
-
-      <!-- Rincón Visual de Animales para Pausa y Calma -->
-      <div class="animals-corner">
-        <div class="section-intro-row">
-          <div>
-            <h2>🐾 Rincón de Calma con Animales</h2>
-            <p class="subtitle">Observa estos animales y haz una pausa breve para regular tu respiración o cambiar el foco.</p>
-          </div>
-          <button type="button" id="shuffle-breath-btn" class="btn-ghost-small">🌬️ Tip de respiración</button>
-        </div>
-
-        <div class="animals-grid">
-          <article class="animal-card">
-            <div class="animal-photo-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80"
-                alt="Gatito tranquilo descansando"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="animal-fallback" style="display:none;">🐱</div>
-            </div>
-            <div class="animal-body">
-              <span class="animal-badge">Calma y descanso</span>
-              <h3>Gatito en pausa</h3>
-              <p>Inhala suave en 4 segundos y suelta el aire en 4 segundos, como un gato estirándose al sol.</p>
-            </div>
-          </article>
-
-          <article class="animal-card">
-            <div class="animal-photo-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80"
-                alt="Perrito alegre mirando de frente"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="animal-fallback" style="display:none;">🐶</div>
-            </div>
-            <div class="animal-body">
-              <span class="animal-badge">Ánimo y compañía</span>
-              <h3>Perrito fiel</h3>
-              <p>Celebra terminar un paso aunque sea pequeño: la constancia vale mucho más que la perfección.</p>
-            </div>
-          </article>
-
-          <article class="animal-card">
-            <div class="animal-photo-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=600&q=80"
-                alt="Pequeño hámster tierno"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="animal-fallback" style="display:none;">🐹</div>
-            </div>
-            <div class="animal-body">
-              <span class="animal-badge">Paso a paso</span>
-              <h3>Pequeño explorador</h3>
-              <p>Si una tarea parece grande, divídela en trozos chiquitos. Solo importa el siguiente paso.</p>
-            </div>
-          </article>
-        </div>
-      </div>
     </section>
 
     <!-- ==================== SECCIÓN 2: JUEGOS SEGUROS ==================== -->
     <section id="juegos-seguros" class="tab-section">
-      <div class="mascot-hero mascot-hero-blue">
-        <div class="mascot-svg-box" aria-hidden="true">
-          <svg viewBox="0 0 140 140" class="mascot-svg">
-            <!-- Orejas de panda -->
-            <circle cx="36" cy="36" r="18" fill="#1e293b" />
-            <circle cx="104" cy="36" r="18" fill="#1e293b" />
-            <!-- Cabeza -->
-            <ellipse cx="70" cy="76" rx="46" ry="38" fill="#ffffff" stroke="#cbd5e1" stroke-width="3" />
-            <!-- Manchas de ojos -->
-            <ellipse cx="50" cy="70" rx="13" ry="16" transform="rotate(-12 50 70)" fill="#1e293b" />
-            <ellipse cx="90" cy="70" rx="13" ry="16" transform="rotate(12 90 70)" fill="#1e293b" />
-            <!-- Ojos -->
-            <circle cx="52" cy="68" r="4.5" fill="#ffffff" />
-            <circle cx="88" cy="68" r="4.5" fill="#ffffff" />
-            <!-- Nariz y boca -->
-            <ellipse cx="70" cy="84" rx="5.5" ry="3.8" fill="#1e293b" />
-            <path d="M63,91 Q70,97 77,91" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="mascot-text">
-          <span class="pill-badge pill-blue">🐼 Entornos lúdicos protegidos</span>
-          <h1>Juegos y Entornos Seguros 🎮</h1>
-          <p class="subtitle">Plataformas y videojuegos validados que apoyan la atención, la socialización sin acoso y la vida diaria.</p>
-        </div>
+      <div class="hero-card hero-card-blue">
+        <span class="eyebrow eyebrow-blue">Entornos lúdicos y accesibles</span>
+        <h1>Juegos y Entornos Seguros 🎮</h1>
+        <p class="subtitle">Plataformas y videojuegos validados que apoyan la atención, la socialización sin acoso y la autonomía cotidiana.</p>
       </div>
 
-      <!-- Filtros interactivos -->
       <div class="filter-bar">
         <button type="button" class="filter-chip active" data-filter="all">Todos los referentes</button>
         <button type="button" class="filter-chip" data-filter="tdah">Enfoque TDAH</button>
@@ -252,7 +123,6 @@
         <button type="button" class="filter-chip" data-filter="gratuito">Acceso Gratuito</button>
       </div>
 
-      <!-- Tarjetas del Estado del Arte -->
       <div class="games-grid">
         <article class="game-card" data-category="tdah">
           <div class="game-badge-row">
@@ -260,7 +130,7 @@
             <span class="tag tag-clinical">Aprobado por FDA</span>
           </div>
           <div class="game-header">
-            <span class="game-emoji">🚀</span>
+            <span class="game-emoji" aria-hidden="true">🚀</span>
             <h3>EndeavorRx</h3>
           </div>
           <p class="game-desc">Videojuego desarrollado por Akili Interactive Labs diseñado como tratamiento digital. Utiliza mecánicas de doble tarea y dificultad adaptativa para entrenar la atención selectiva e inhibir distractores.</p>
@@ -278,7 +148,7 @@
             <span class="tag tag-free">Gratuito (con Minecraft)</span>
           </div>
           <div class="game-header">
-            <span class="game-emoji">🧱</span>
+            <span class="game-emoji" aria-hidden="true">🧱</span>
             <h3>Autcraft</h3>
           </div>
           <p class="game-desc">Servidor dedicado de Minecraft creado por Stuart Duncan exclusivamente para personas autistas y sus familias. Funciona mediante lista blanca (whitelist) y moderación activa permanente.</p>
@@ -296,7 +166,7 @@
             <span class="tag tag-clinical">Respaldo NIH / FDA</span>
           </div>
           <div class="game-header">
-            <span class="game-emoji">🥽</span>
+            <span class="game-emoji" aria-hidden="true">🥽</span>
             <h3>Floreo VR</h3>
           </div>
           <p class="game-desc">Plataforma de realidad virtual terapéutica que permite practicar habilidades sociales y de autonomía cotidiana (como cruzar la calle o conversar en clase) en escenarios seguros y repetibles.</p>
@@ -309,10 +179,9 @@
         </article>
       </div>
 
-      <!-- Cuadro Comparativo Didáctico -->
       <div class="comparison-card">
         <h3>📊 ¿Por qué nace Calma frente a estas soluciones?</h3>
-        <p>Nuestra investigación bajo el enfoque <em>"La forma sigue a la función"</em> detectó que las herramientas actuales suelen ser costosas o enfocarse en una sola condición. <strong>Calma</strong> integra lo mejor de cada mundo de forma gratuita y accesible desde cualquier navegador:</p>
+        <p>El análisis bajo el enfoque <em>"La forma sigue a la función"</em> identificó que las herramientas existentes suelen implicar altos costos o centrarse en un solo objetivo. <strong>Calma</strong> reúne apoyos visuales y de rutina de forma gratuita desde cualquier navegador.</p>
         <div class="table-responsive">
           <table class="info-table">
             <thead>
@@ -350,32 +219,12 @@
 
     <!-- ==================== SECCIÓN 3: APRENDE ==================== -->
     <section id="aprende" class="tab-section">
-      <div class="mascot-hero mascot-hero-purple">
-        <div class="mascot-svg-box" aria-hidden="true">
-          <svg viewBox="0 0 140 140" class="mascot-svg">
-            <!-- Cuerpo de búho -->
-            <ellipse cx="70" cy="76" rx="42" ry="44" fill="#8b5cf6" />
-            <!-- Vientre claro -->
-            <ellipse cx="70" cy="90" rx="26" ry="25" fill="#ede9fe" />
-            <!-- Ojos grandes -->
-            <circle cx="52" cy="62" r="15" fill="#ffffff" />
-            <circle cx="88" cy="62" r="15" fill="#ffffff" />
-            <circle cx="52" cy="62" r="7" fill="#1e293b" />
-            <circle cx="88" cy="62" r="7" fill="#1e293b" />
-            <circle cx="54" cy="60" r="2.5" fill="#ffffff" />
-            <circle cx="90" cy="60" r="2.5" fill="#ffffff" />
-            <!-- Pico -->
-            <polygon points="64,74 76,74 70,85" fill="#fbbf24" />
-          </svg>
-        </div>
-        <div class="mascot-text">
-          <span class="pill-badge pill-purple">🦉 Búho Sabio — Información clara y accesible</span>
-          <h1>Aprende sobre Neurodivergencia 📖</h1>
-          <p class="subtitle">Información clara, basada en evidencia y pensada para personas neurodivergentes, familias y docentes.</p>
-        </div>
+      <div class="hero-card hero-card-purple">
+        <span class="eyebrow eyebrow-purple">Información clara y accesible</span>
+        <h1>Aprende sobre Neurodivergencia 📖</h1>
+        <p class="subtitle">Conceptos clave, estrategias cotidianas y orientaciones prácticas para personas neurodivergentes, familias y docentes.</p>
       </div>
 
-      <!-- Sub-navegación de temas -->
       <div class="subtabs-bar">
         <button type="button" class="subtab-btn active" data-subtab="tema-tdah">⚡ ¿Qué es el TDAH?</button>
         <button type="button" class="subtab-btn" data-subtab="tema-tea">🧩 ¿Qué es el TEA?</button>
@@ -383,7 +232,6 @@
         <button type="button" class="subtab-btn" data-subtab="tema-guias">🏠 Guías prácticas</button>
       </div>
 
-      <!-- Sub-contenido 1: TDAH -->
       <div id="tema-tdah" class="subtab-content active">
         <div class="info-hero-box accent-amber">
           <h2>⚡ TDAH — Trastorno por Déficit de Atención e Hiperactividad</h2>
@@ -434,7 +282,6 @@
         </div>
       </div>
 
-      <!-- Sub-contenido 2: TEA -->
       <div id="tema-tea" class="subtab-content">
         <div class="info-hero-box accent-teal">
           <h2>🧩 TEA — Trastorno del Espectro Autista</h2>
@@ -482,7 +329,6 @@
         </div>
       </div>
 
-      <!-- Sub-contenido 3: Convivencia TDAH + TEA -->
       <div id="tema-convivencia" class="subtab-content">
         <div class="info-hero-box accent-purple">
           <h2>🌈 Cuando TDAH y TEA Conviven (AuDHD)</h2>
@@ -508,7 +354,6 @@
         </div>
       </div>
 
-      <!-- Sub-contenido 4: Guías para Familias y Docentes -->
       <div id="tema-guias" class="subtab-content">
         <div class="two-col-grid">
           <div class="detail-box box-mint">
@@ -539,11 +384,12 @@
       </div>
     </section>
 
-    <!-- ==================== SECCIÓN 4: FUENTES DE INFORMACIÓN ==================== -->
+    <!-- ==================== SECCIÓN 4: FUENTES ==================== -->
     <section id="fuentes" class="tab-section">
-      <div class="hero-header">
+      <div class="hero-card">
+        <span class="eyebrow">Respaldo normativo y científico</span>
         <h1>Fuentes y Respaldo Bibliográfico 📚</h1>
-        <p class="subtitle">Documentos científicos, marcos legales en Chile y referentes tecnológicos que sustentan este Proyecto de Título.</p>
+        <p class="subtitle">Documentos científicos, marcos legales en Chile y referentes tecnológicos que sustentan este proyecto.</p>
       </div>
 
       <div class="sources-container">
@@ -551,15 +397,15 @@
           <h3>🇨🇱 Marco Legal y Salud Pública en Chile</h3>
           <ul class="source-list">
             <li>
-              <strong>Ley N° 21.545 (Ley TEA, 2023):</strong> Establece la promoción de la inclusión, la atención integral y la protección de los derechos de las personas con trastorno del espectro autista en el ámbito social, de salud y educación. Biblioteca del Congreso Nacional de Chile (BCN).
+              <strong>Ley N° 21.545 (Ley TEA, 2023):</strong> Promoción de la inclusión, atención integral y protección de los derechos de las personas con trastorno del espectro autista en salud y educación. Biblioteca del Congreso Nacional de Chile (BCN).
               <a href="https://www.bcn.cl/leychile/navegar?idNorma=1190123" target="_blank" rel="noopener noreferrer">Ver normativa en BCN ↗</a>
             </li>
             <li>
-              <strong>Ministerio de Salud de Chile (MINSAL):</strong> Guías de práctica clínica y orientaciones técnicas para la detección y apoyo integral de personas con TEA y TDAH en la red asistencial chilena.
+              <strong>Ministerio de Salud de Chile (MINSAL):</strong> Orientaciones técnicas y políticas públicas de salud mental e inclusión en Chile.
               <a href="https://www.minsal.cl/" target="_blank" rel="noopener noreferrer">Portal MINSAL ↗</a>
             </li>
             <li>
-              <strong>Organización Mundial de la Salud (OMS):</strong> Datos clave, caracterización clínica y enfoque de derechos sobre los Trastornos del Espectro Autista y el neurodesarrollo.
+              <strong>Organización Mundial de la Salud (OMS):</strong> Datos clave y caracterización sobre los Trastornos del Espectro Autista y el neurodesarrollo.
               <a href="https://www.who.int/es/news-room/fact-sheets/detail/autism-spectrum-disorders" target="_blank" rel="noopener noreferrer">Consultar ficha OMS ↗</a>
             </li>
           </ul>
@@ -569,8 +415,8 @@
           <h3>🎮 Investigación en Videojuegos, Realidad Virtual y Neurodivergencia</h3>
           <ul class="source-list">
             <li>
-              <strong>EndeavorRx / Akili Interactive Labs (2020):</strong> Autorización de la FDA como primer tratamiento digital basado en videojuegos para mejorar la función atencional en niños con TDAH.
-              <a href="https://www.endeavorrx.com/" target="_blank" rel="noopener noreferrer">Sitio clínico EndeavorRx ↗</a>
+              <strong>EndeavorRx / Akili Interactive Labs (2020):</strong> Tratamiento digital basado en videojuegos para mejorar la función atencional en niños con TDAH.
+              <a href="https://www.endeavorrx.com/" target="_blank" rel="noopener noreferrer">Sitio oficial EndeavorRx ↗</a>
             </li>
             <li>
               <strong>Ringland, K. E. (2019):</strong> <em>"Autsome": Fostering an autistic identity in an online Minecraft community for youth with autism</em>. En Information in Contemporary Society (pp. 132–143). Springer.
@@ -595,13 +441,11 @@
 
   </main>
 
-  <!-- Pie de Página Académico -->
   <footer class="footer">
-    <p><strong>Calma</strong> • Proyecto de Título: Apoyo Cotidiano para Personas con TDAH y TEA</p>
-    <p>Desarrollado por <strong>Matías Vallentino Morales Mutis</strong> • Universidad Bernardo O'Higgins (UBO) 2026</p>
+    <p><strong>Calma</strong> • Apoyo Cotidiano para Personas con TDAH y TEA</p>
+    <p>Matías Vallentino Morales Mutis • Universidad Bernardo O'Higgins (UBO) 2026</p>
   </footer>
 
-  <!-- Notificación flotante -->
   <div id="toast-notification" class="toast" aria-live="polite"></div>
 
   <script src="script.js"></script>
