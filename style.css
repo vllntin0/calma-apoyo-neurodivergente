@@ -1,4 +1,4 @@
-/* ==================== PALETA CROMÁTICA CÁLIDA Y SENSORIALMENTE SUAVE ==================== */
+/*INICIO*/
 :root {
   --bg-page: #f4f8f6;
   --bg-card: #ffffff;
@@ -45,7 +45,7 @@ h1, h2, h3 {
   letter-spacing: -0.015em;
 }
 
-/* ==================== BARRA SUPERIOR ==================== */
+/*BARRA SUPERIOR*/
 .navbar {
   background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
@@ -107,7 +107,7 @@ h1, h2, h3 {
   box-shadow: 0 6px 14px rgba(27, 127, 103, 0.22);
 }
 
-/* ==================== CONTENEDOR Y ENCABEZADOS ==================== */
+/*ENCABEZADOS*/
 .main-container {
   max-width: 1000px;
   width: 100%;
@@ -184,7 +184,7 @@ h1, h2, h3 {
   max-width: 72ch;
 }
 
-/* ==================== GAMIFICACIÓN ==================== */
+
 .stats-card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
@@ -274,7 +274,7 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
-/* ==================== TEMPORIZADOR ==================== */
+/*TEMPORIZADOR*/
 .pomodoro-banner {
   background: linear-gradient(135deg, #fffbf0 0%, #fef3d4 100%);
   border: 1.5px solid #f6dc99;
@@ -327,7 +327,7 @@ h1, h2, h3 {
   border: 1.5px solid #edd082;
 }
 
-/* ==================== TAREAS ==================== */
+/*TAREAS*/
 .tasks-header {
   display: flex;
   justify-content: space-between;
@@ -427,7 +427,7 @@ h1, h2, h3 {
   color: #dc2626;
 }
 
-/* ==================== AGREGAR TAREA ==================== */
+/*AGREGAR TAREA*/
 .add-task-card {
   background-color: var(--secondary-light);
   border: 1.5px solid #c9dcff;
@@ -491,7 +491,7 @@ h1, h2, h3 {
   border-color: var(--primary);
 }
 
-/* ==================== BOTONES ==================== */
+/*BOTONES*/
 .btn-primary {
   background-color: var(--primary);
   color: #ffffff;
@@ -554,7 +554,7 @@ h1, h2, h3 {
   border-color: var(--primary);
 }
 
-/* ==================== JUEGOS SEGUROS ==================== */
+/*JUEGOS SEGUROS*/
 .filter-bar {
   display: flex;
   gap: 0.6rem;
@@ -680,7 +680,7 @@ h1, h2, h3 {
   color: #ffffff;
 }
 
-/* ==================== TABLA COMPARATIVA ==================== */
+/*TABLA COMPARATIVA*/
 .comparison-card {
   background: var(--bg-card);
   border: 1.5px solid var(--border-soft);
@@ -721,7 +721,7 @@ h1, h2, h3 {
   font-weight: 800;
 }
 
-/* ==================== SECCIÓN APRENDE ==================== */
+/*SECCIÓN APRENDE*/
 .subtabs-bar {
   display: flex;
   gap: 0.6rem;
@@ -812,7 +812,7 @@ h1, h2, h3 {
   color: var(--text-muted);
 }
 
-/* ==================== FUENTES ==================== */
+/*FUENTES*/
 .sources-container {
   display: flex;
   flex-direction: column;
@@ -860,7 +860,7 @@ h1, h2, h3 {
   text-decoration: underline;
 }
 
-/* ==================== FOOTER Y TOAST ==================== */
+/*FOOTER Y TOAST*/
 .footer {
   text-align: center;
   padding: 1.75rem 1rem;
@@ -893,7 +893,7 @@ h1, h2, h3 {
   transform: translateY(0);
 }
 
-/* ==================== RESPONSIVO ==================== */
+/*RESPONSIVO*/
 @media (max-width: 768px) {
   .stats-card {
     grid-template-columns: 1fr;
