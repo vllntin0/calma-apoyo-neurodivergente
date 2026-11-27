@@ -263,7 +263,43 @@ document.querySelectorAll(".filter-chip").forEach(chip => {
     });
   });
 });
+const themeToggleBtn = document.getElementById("theme-toggle-btn");
+const THEME_STORAGE_KEY = "calmaThemePreference";
 
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  if (isDark) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.textContent = isDark ? "☀️ Modo claro" : "🌙 Modo oscuro";
+    themeToggleBtn.setAttribute("aria-pressed", String(isDark));
+  }
+}
+
+const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+const systemPrefersDark =
+  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", () => {
+    const nextTheme =
+      document.documentElement.getAttribute("data-theme") === "dark"
+        ? "light"
+        : "dark";
+    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    applyTheme(nextTheme);
+    showToast(
+      nextTheme === "dark"
+        ? "🌙 Modo oscuro activado"
+        : "☀️ Modo claro activado"
+    );
+  });
+}
 // ==================== SUB-PESTAÑAS DE SECCIÓN APRENDE ====================
 document.querySelectorAll(".subtab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
