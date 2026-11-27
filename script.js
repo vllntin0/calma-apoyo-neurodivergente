@@ -12,6 +12,13 @@ const BADGES_CATALOG = [
   { stars: 35, label: "🏆 Maestro de Rutinas" }
 ];
 
+const BREATHING_TIPS = [
+  "🌬️ Inhala 4 seg → Sostén 2 seg → Exhala 4 seg. ¡Sin prisa!",
+  "🐾 Suelta los hombros y relaja la mandíbula. Estás haciéndolo muy bien.",
+  "🌿 Mira un punto calmado durante 10 segundos y vuelve a tu ritmo."
+];
+let breathTipIndex = 0;
+
 let appState = JSON.parse(localStorage.getItem("calmaAppState")) || {
   stars: 0,
   tasks: DEFAULT_TASKS
@@ -23,9 +30,10 @@ function saveState() {
   localStorage.setItem("calmaAppState", JSON.stringify(appState));
 }
 
-// ==================== NOTIFICACIONES AMIGABLES ====================
+// ==================== NOTIFICACIONES ====================
 function showToast(message) {
   const toast = document.getElementById("toast-notification");
+  if (!toast) return;
   toast.textContent = message;
   toast.classList.add("show");
   setTimeout(() => {
@@ -33,7 +41,7 @@ function showToast(message) {
   }, 3000);
 }
 
-// ==================== NAVEGACIÓN PRINCIPAL (PESTAÑAS) ====================
+// ==================== NAVEGACIÓN PRINCIPAL ====================
 const navButtons = document.querySelectorAll(".nav-btn[data-tab]");
 const tabSections = document.querySelectorAll(".tab-section");
 
@@ -51,7 +59,7 @@ navButtons.forEach(btn => {
   btn.addEventListener("click", () => switchTab(btn.dataset.tab));
 });
 
-// ==================== RENDERIZADO DE TAREAS Y GAMIFICACIÓN ====================
+// ==================== GAMIFICACIÓN Y TAREAS ====================
 function updateStatsUI() {
   const starCountEl = document.getElementById("star-count");
   const levelCountEl = document.getElementById("level-count");
@@ -101,7 +109,6 @@ function renderTasks() {
     `;
 
     li.querySelector(".task-left").addEventListener("click", () => toggleTask(task.id));
-
     li.querySelector(".delete-task-btn").addEventListener("click", (e) => {
       e.stopPropagation();
       deleteTask(task.id);
@@ -150,7 +157,6 @@ function animateStar() {
   }, 350);
 }
 
-// Selector de iconos
 document.querySelectorAll(".icon-option").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".icon-option").forEach(b => b.classList.remove("selected"));
@@ -159,7 +165,6 @@ document.querySelectorAll(".icon-option").forEach(btn => {
   });
 });
 
-// Agregar nueva tarea
 document.getElementById("add-task-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const input = document.getElementById("new-task-input");
@@ -179,7 +184,6 @@ document.getElementById("add-task-form").addEventListener("submit", (e) => {
   showToast("✨ Nueva tarea agregada a tu día");
 });
 
-// Reiniciar marcas del día
 document.getElementById("reset-day-btn").addEventListener("click", () => {
   appState.tasks.forEach(t => (t.completed = false));
   saveState();
@@ -187,13 +191,21 @@ document.getElementById("reset-day-btn").addEventListener("click", () => {
   showToast("🔄 Tareas listas para un nuevo día");
 });
 
+const breathBtn = document.getElementById("shuffle-breath-btn");
+if (breathBtn) {
+  breathBtn.addEventListener("click", () => {
+    showToast(BREATHING_TIPS[breathTipIndex]);
+    breathTipIndex = (breathTipIndex + 1) % BREATHING_TIPS.length;
+  });
+}
+
 function escapeHTML(str) {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
 }
 
-// ==================== TEMPORIZADOR POMODORO SUAVE ====================
+// ==================== TEMPORIZADOR POMODORO ====================
 let timerSeconds = 15 * 60;
 let timerInterval = null;
 let isRunning = false;
@@ -243,7 +255,7 @@ timerResetBtn.addEventListener("click", () => {
   updateTimerText();
 });
 
-// ==================== FILTROS DE JUEGOS SEGUROS ====================
+// ==================== FILTROS Y SUB-PESTAÑAS ====================
 document.querySelectorAll(".filter-chip").forEach(chip => {
   chip.addEventListener("click", () => {
     document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
@@ -261,7 +273,6 @@ document.querySelectorAll(".filter-chip").forEach(chip => {
   });
 });
 
-// ==================== SUB-PESTAÑAS DE SECCIÓN APRENDE ====================
 document.querySelectorAll(".subtab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".subtab-btn").forEach(b => b.classList.remove("active"));
@@ -272,9 +283,9 @@ document.querySelectorAll(".subtab-btn").forEach(btn => {
   });
 });
 
-// ==================== SWITCH MODO NORMAL / DARK MODE ====================
-const themeSwitch = document.getElementById("theme-switch");
-const themeLabel = document.getElementById("theme-label");
+// ==================== SWITCH ESTILO IPHONE (NORMAL / DARK MODE) ====================
+const themeCheckbox = document.getElementById("theme-checkbox");
+const themeStatusText = document.getElementById("theme-status-text");
 const THEME_STORAGE_KEY = "calmaThemePreference";
 
 function applyTheme(theme) {
@@ -285,11 +296,12 @@ function applyTheme(theme) {
     document.documentElement.removeAttribute("data-theme");
   }
 
-  if (themeSwitch) {
-    themeSwitch.setAttribute("aria-checked", String(isDark));
+  if (themeCheckbox) {
+    themeCheckbox.checked = isDark;
+    themeCheckbox.setAttribute("aria-checked", String(isDark));
   }
-  if (themeLabel) {
-    themeLabel.textContent = isDark ? "Dark" : "Normal";
+  if (themeStatusText) {
+    themeStatusText.textContent = isDark ? "Modo Dark" : "Modo Normal";
   }
 }
 
@@ -298,11 +310,9 @@ const systemPrefersDark =
   window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
 
-if (themeSwitch) {
-  themeSwitch.addEventListener("click", () => {
-    const isCurrentlyDark =
-      document.documentElement.getAttribute("data-theme") === "dark";
-    const nextTheme = isCurrentlyDark ? "light" : "dark";
+if (themeCheckbox) {
+  themeCheckbox.addEventListener("change", () => {
+    const nextTheme = themeCheckbox.checked ? "dark" : "light";
     localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
     applyTheme(nextTheme);
     showToast(
