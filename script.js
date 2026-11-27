@@ -12,13 +12,6 @@ const BADGES_CATALOG = [
   { stars: 35, label: "🏆 Maestro de Rutinas" }
 ];
 
-const BREATHING_TIPS = [
-  "🌬️ Inhala 4 seg → Sostén 2 seg → Exhala 4 seg. ¡Sin prisa!",
-  "🐾 Suelta los hombros y relaja la mandíbula. Estás haciéndolo muy bien.",
-  "🌿 Mira un punto calmado durante 10 segundos y vuelve a tu ritmo."
-];
-let breathTipIndex = 0;
-
 let appState = JSON.parse(localStorage.getItem("calmaAppState")) || {
   stars: 0,
   tasks: DEFAULT_TASKS
@@ -191,14 +184,6 @@ document.getElementById("reset-day-btn").addEventListener("click", () => {
   showToast("🔄 Tareas listas para un nuevo día");
 });
 
-const breathBtn = document.getElementById("shuffle-breath-btn");
-if (breathBtn) {
-  breathBtn.addEventListener("click", () => {
-    showToast(BREATHING_TIPS[breathTipIndex]);
-    breathTipIndex = (breathTipIndex + 1) % BREATHING_TIPS.length;
-  });
-}
-
 function escapeHTML(str) {
   const div = document.createElement("div");
   div.textContent = str;
@@ -282,46 +267,6 @@ document.querySelectorAll(".subtab-btn").forEach(btn => {
     document.getElementById(btn.dataset.subtab).classList.add("active");
   });
 });
-
-// ==================== SWITCH ESTILO IPHONE (NORMAL / DARK MODE) ====================
-const themeCheckbox = document.getElementById("theme-checkbox");
-const themeStatusText = document.getElementById("theme-status-text");
-const THEME_STORAGE_KEY = "calmaThemePreference";
-
-function applyTheme(theme) {
-  const isDark = theme === "dark";
-  if (isDark) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.removeAttribute("data-theme");
-  }
-
-  if (themeCheckbox) {
-    themeCheckbox.checked = isDark;
-    themeCheckbox.setAttribute("aria-checked", String(isDark));
-  }
-  if (themeStatusText) {
-    themeStatusText.textContent = isDark ? "Modo Dark" : "Modo Normal";
-  }
-}
-
-const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-const systemPrefersDark =
-  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
-
-if (themeCheckbox) {
-  themeCheckbox.addEventListener("change", () => {
-    const nextTheme = themeCheckbox.checked ? "dark" : "light";
-    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    applyTheme(nextTheme);
-    showToast(
-      nextTheme === "dark"
-        ? "🌙 Modo oscuro activado"
-        : "☀️ Modo normal activado"
-    );
-  });
-}
 
 // Inicializar aplicación
 renderTasks();
